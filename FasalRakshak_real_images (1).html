@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FasalRakshak — Crop Disease Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --g0:#0d1f07; --g1:#1a3a0f; --g2:#2d5a1b; --g3:#4a8c2a; --g4:#6ab840; --g5:#90d040; --g6:#b8e870;
+  --cream:#f8f4ec; --parch:#eee8d8; --ink:#141208; --muted:#7a6a4a; --faint:#c8bea8;
+  --crit-bg:#fff0ee; --crit-bd:#ffb8a8; --crit-tx:#a02018; --crit-dot:#e03020;
+  --mod-bg:#fff8ee; --mod-bd:#ffd899; --mod-tx:#a05010; --mod-dot:#e08020;
+  --mild-bg:#f0faee; --mild-bd:#b8dda8; --mild-tx:#2a6018; --mild-dot:#50a030;
+  --shadow-sm: 0 2px 8px rgba(13,31,7,0.10);
+  --shadow-md: 0 8px 32px rgba(13,31,7,0.14);
+  --shadow-lg: 0 20px 60px rgba(13,31,7,0.20);
+  --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+
+body {
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Baloo 2",cursive;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--parch); }
+::-webkit-scrollbar-thumb { background:var(--g3); border-radius:3px; }
+
+/* ─── NAV ─── */
+.nav {
+  background:var(--g0);
+  padding:0 28px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:66px;
+  position:sticky; top:0; z-index:200;
+  border-bottom:2px solid rgba(144,208,64,0.25);
+}
+.nav-logo { display:flex; align-items:center; gap:12px; }
+.nav-icon {
+  width:40px; height:40px;
+  background:var(--g5);
+  border-radius:12px 4px 12px 4px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+  box-shadow:0 0 20px rgba(144,208,64,0.4);
+  animation:glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%,100%{ box-shadow:0 0 20px rgba(144,208,64,0.4); }
+  50%{ box-shadow:0 0 35px rgba(144,208,64,0.7); }
+}
+.nav-title {
+  font-family:"Syne",sans-serif;
+  font-size:22px; font-weight:800; color:var(--g5);
+  letter-spacing:-0.5px;
+}
+.nav-title span { color:#f5c842; }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.nav-count {
+  background:rgba(144,208,64,0.1);
+  border:1px solid rgba(144,208,64,0.25);
+  border-radius:20px; padding:5px 14px;
+  font-family:"DM Mono",monospace;
+  font-size:11px; color:var(--g5); letter-spacing:0.5px;
+}
+.lang-toggle {
+  display:flex; gap:2px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px; padding:3px;
+}
+.lang-btn {
+  background:none; border:none; color:rgba(255,255,255,0.45);
+  font-family:"Baloo 2",cursive;
+  font-size:13px; font-weight:700;
+  padding:5px 14px; border-radius:6px; cursor:pointer;
+  transition:all 0.2s;
+}
+.lang-btn.on { background:var(--g5); color:var(--g0); }
+
+/* ─── HERO ─── */
+.hero {
+  background:var(--g0);
+  padding:64px 28px 56px;
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 70% at 20% 50%, rgba(74,140,42,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 50%, rgba(144,208,64,0.10) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero::after {
+  content:"";
+  position:absolute; bottom:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(144,208,64,0.5),transparent);
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(144,208,64,0.08);
+  border:1px solid rgba(144,208,64,0.2);
+  border-radius:20px; padding:6px 18px;
+  font-family:"DM Mono",monospace;
+  font-size:11px; color:var(--g5);
+  letter-spacing:1.5px; text-transform:uppercase;
+  margin-bottom:20px;
+}
+.hero-badge::before {
+  content:""; width:7px; height:7px; border-radius:50%;
+  background:var(--g5); box-shadow:0 0 8px var(--g5);
+  animation:dot-pulse 1.5s ease-in-out infinite;
+}
+@keyframes dot-pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 {
+  font-family:"Syne",sans-serif;
+  font-size:56px; font-weight:800; color:#fff;
+  line-height:1.05; letter-spacing:-2px;
+  margin-bottom:10px;
+}
+.hero h1 em { color:var(--g5); font-style:normal; }
+.hero-hi {
+  font-family:"Noto Sans Devanagari",sans-serif;
+  font-size:19px; color:rgba(255,255,255,0.45);
+  margin-bottom:14px; font-weight:500;
+}
+.hero p {
+  font-size:16px; color:rgba(255,255,255,0.6);
+  max-width:500px; margin:0 auto 40px;
+  line-height:1.65;
+}
+.hero-stats {
+  display:flex; justify-content:center; gap:0;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius-lg);
+  max-width:520px; margin:0 auto;
+  overflow:hidden;
+}
+.stat {
+  flex:1; padding:18px 12px; text-align:center;
+  border-right:1px solid rgba(255,255,255,0.08);
+}
+.stat:last-child { border-right:none; }
+.stat-num {
+  font-family:"Syne",sans-serif;
+  font-size:30px; font-weight:800; color:var(--g5); line-height:1;
+}
+.stat-label { font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px; letter-spacing:0.5px; }
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,0.07);
+  padding:14px 28px;
+  position:sticky; top:66px; z-index:100;
+  box-shadow:var(--shadow-sm);
+}
+.filter-inner {
+  max-width:1160px; margin:0 auto;
+  display:flex; gap:16px; align-items:center; flex-wrap:wrap;
+}
+.filter-label {
+  font-size:11px; font-weight:700; color:var(--faint);
+  text-transform:uppercase; letter-spacing:1px; white-space:nowrap;
+}
+.crop-filters { display:flex; gap:6px; flex-wrap:wrap; flex:1; }
+.cf-btn {
+  background:var(--parch);
+  border:1.5px solid transparent;
+  border-radius:20px; padding:7px 16px;
+  font-size:13px; font-weight:600;
+  color:var(--muted); cursor:pointer;
+  font-family:"Baloo 2",cursive;
+  transition:all 0.18s;
+  white-space:nowrap;
+}
+.cf-btn:hover { background:var(--g5); color:#fff; transform:translateY(-1px); }
+.cf-btn.on {
+  background:var(--g0); color:var(--g5);
+  border-color:var(--g4);
+  box-shadow:0 2px 12px rgba(13,31,7,0.2);
+}
+.sev-filters { display:flex; gap:6px; flex-wrap:wrap; }
+.sf-btn {
+  border-radius:20px; padding:6px 14px;
+  font-size:12px; font-weight:700;
+  font-family:"Baloo 2",cursive; cursor:pointer;
+  border:1.5px solid; transition:all 0.18s;
+}
+.sf-btn.all  { background:var(--parch); border-color:var(--faint); color:var(--muted); }
+.sf-btn.crit { background:var(--crit-bg); border-color:var(--crit-bd); color:var(--crit-tx); }
+.sf-btn.mod  { background:var(--mod-bg);  border-color:var(--mod-bd);  color:var(--mod-tx); }
+.sf-btn.mild { background:var(--mild-bg); border-color:var(--mild-bd); color:var(--mild-tx); }
+.sf-btn:not(.on) { opacity:0.55; }
+.sf-btn.on { opacity:1; transform:scale(1.05); }
+
+/* ─── MAIN ─── */
+.main { max-width:1160px; margin:0 auto; padding:36px 24px; }
+.section-hd {
+  display:flex; align-items:center; gap:12px; margin-bottom:24px;
+}
+.section-hd h2 {
+  font-family:"DM Mono",monospace;
+  font-size:11px; font-weight:500; color:var(--faint);
+  text-transform:uppercase; letter-spacing:1.5px; white-space:nowrap;
+}
+.section-hd::after { content:""; flex:1; height:1px; background:var(--parch); }
+.results-count {
+  font-family:"DM Mono",monospace;
+  font-size:11px; color:var(--faint);
+  background:var(--parch); padding:4px 12px; border-radius:20px;
+}
+.disease-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:22px;
+}
+
+/* ─── DISEASE CARD ─── */
+.d-card {
+  background:#fff;
+  border-radius:var(--radius-lg);
+  border:1.5px solid rgba(0,0,0,0.07);
+  overflow:hidden; cursor:pointer;
+  transition:transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s ease, border-color 0.22s;
+  box-shadow:var(--shadow-sm);
+}
+.d-card:hover {
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--g4);
+}
+.d-card-img-wrap { position:relative; overflow:hidden; }
+.d-card-img {
+  width:100%; height:200px;
+  object-fit:cover; display:block;
+  background:linear-gradient(90deg,#f0ece4 25%,#e8e4dc 50%,#f0ece4 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;
+  transition:transform 0.4s ease;
+}
+.d-card:hover .d-card-img { transform:scale(1.04); }
+.d-card-img.loaded { animation:none; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.d-card-img-wrap::after {
+  content:""; position:absolute; bottom:0; left:0; right:0; height:80px;
+  background:linear-gradient(transparent,rgba(0,0,0,0.45));
+  pointer-events:none;
+}
+.d-card-crop-chip {
+  position:absolute; top:12px; left:12px; z-index:2;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(8px);
+  border-radius:20px; padding:4px 11px;
+  font-size:11px; font-weight:700; color:#fff;
+  letter-spacing:0.3px;
+}
+.d-card-sev-chip {
+  position:absolute; top:12px; right:12px; z-index:2;
+  border-radius:20px; padding:4px 10px;
+  font-size:10px; font-weight:800;
+  text-transform:uppercase; letter-spacing:0.8px;
+}
+.d-card-sev-chip.critical { background:var(--crit-dot); color:#fff; }
+.d-card-sev-chip.moderate { background:var(--mod-dot); color:#fff; }
+.d-card-sev-chip.mild     { background:var(--mild-dot); color:#fff; }
+
+.d-card-body { padding:16px 18px 18px; }
+.d-card-name {
+  font-family:"Syne",sans-serif;
+  font-size:17px; font-weight:700; color:var(--ink);
+  line-height:1.2; margin-bottom:3px;
+}
+.d-card-name-hi {
+  font-family:"Noto Sans Devanagari",sans-serif;
+  font-size:12px; color:var(--muted); margin-bottom:10px;
+}
+.d-card-syms {
+  font-size:12px; color:var(--muted); line-height:1.55;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  border-left:2px solid var(--parch); padding-left:10px;
+  margin-bottom:14px;
+}
+.d-card-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:12px; border-top:1px solid var(--parch);
+}
+.d-card-meta { font-size:11px; color:var(--faint); font-family:"DM Mono",monospace; }
+.view-btn {
+  background:var(--g0); color:var(--g5);
+  border:none; border-radius:8px; padding:7px 16px;
+  font-family:"Baloo 2",cursive; font-size:12px; font-weight:700;
+  cursor:pointer; transition:all 0.18s;
+  display:flex; align-items:center; gap:4px;
+}
+.view-btn:hover { background:var(--g2); transform:translateX(2px); }
+
+/* ─── FALLBACK PLACEHOLDERS ─── */
+.img-placeholder {
+  width:100%; height:200px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:7px; font-size:48px;
+}
+.img-placeholder.wheat  { background:linear-gradient(135deg,#fff8e1,#ffe082); }
+.img-placeholder.rice   { background:linear-gradient(135deg,#e8f5e9,#a5d6a7); }
+.img-placeholder.tomato { background:linear-gradient(135deg,#fce4ec,#f48fb1); }
+.img-placeholder.potato { background:linear-gradient(135deg,#fff3e0,#ffcc80); }
+.img-placeholder.cotton { background:linear-gradient(135deg,#f3e5f5,#ce93d8); }
+.img-placeholder.maize  { background:linear-gradient(135deg,#fff9c4,#fff176); }
+.img-placeholder span   { font-size:11px; font-weight:700; opacity:0.5; letter-spacing:0.8px; text-transform:uppercase; font-family:"DM Mono",monospace; }
+
+/* ─── MODAL ─── */
+.modal-backdrop {
+  display:none; position:fixed; inset:0;
+  background:rgba(8,16,5,0.80);
+  z-index:500; align-items:flex-start; justify-content:center;
+  padding:24px 20px; overflow-y:auto;
+  backdrop-filter:blur(4px);
+}
+.modal-backdrop.show { display:flex; }
+.modal {
+  background:#fff; border-radius:var(--radius-xl);
+  max-width:740px; width:100%;
+  margin:auto; overflow:hidden;
+  animation:modal-in 0.28s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:var(--shadow-lg);
+}
+@keyframes modal-in { from{opacity:0;transform:translateY(24px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+.modal-close {
+  position:absolute; top:16px; right:16px; z-index:10;
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(0,0,0,0.4); border:none; color:#fff;
+  font-size:17px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.15s; backdrop-filter:blur(8px);
+}
+.modal-close:hover { background:rgba(0,0,0,0.65); transform:rotate(90deg); }
+
+.modal-img {
+  width:100%; height:280px; object-fit:cover; display:block;
+}
+.modal-img-placeholder {
+  width:100%; height:280px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  font-size:80px;
+}
+.modal-img-placeholder.wheat  { background:linear-gradient(135deg,#fff8e1,#ffe082); }
+.modal-img-placeholder.rice   { background:linear-gradient(135deg,#e8f5e9,#a5d6a7); }
+.modal-img-placeholder.tomato { background:linear-gradient(135deg,#fce4ec,#f48fb1); }
+.modal-img-placeholder.potato { background:linear-gradient(135deg,#fff3e0,#ffcc80); }
+.modal-img-placeholder.cotton { background:linear-gradient(135deg,#f3e5f5,#ce93d8); }
+.modal-img-placeholder.maize  { background:linear-gradient(135deg,#fff9c4,#fff176); }
+.modal-img-placeholder span   { font-size:13px; font-weight:700; opacity:0.45; letter-spacing:1px; text-transform:uppercase; font-family:"DM Mono",monospace; }
+
+.modal-body { padding:26px 28px 32px; }
+.modal-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:20px; }
+.modal-title {
+  font-family:"Syne",sans-serif;
+  font-size:26px; font-weight:800; color:var(--ink); line-height:1.1;
+}
+.modal-title-hi {
+  font-family:"Noto Sans Devanagari",sans-serif;
+  font-size:16px; color:var(--muted); margin-top:5px; font-weight:500;
+}
+.modal-badges { display:flex; flex-direction:column; align-items:flex-end; gap:7px; flex-shrink:0; }
+
+.sev-pill {
+  border-radius:20px; padding:4px 13px;
+  font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.7px;
+}
+.sev-critical { background:var(--crit-dot); color:#fff; }
+.sev-moderate { background:var(--mod-dot); color:#fff; }
+.sev-mild     { background:var(--mild-dot); color:#fff; }
+
+.crop-tag {
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--parch); border:1px solid rgba(0,0,0,0.08);
+  border-radius:20px; padding:3px 10px;
+  font-size:11px; color:var(--muted); font-weight:600;
+}
+.modal-crop-tag { font-size:12px; }
+
+.overview-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+@media(max-width:600px) { .overview-grid{grid-template-columns:1fr} .disease-grid{grid-template-columns:1fr} .hero h1{font-size:36px} }
+
+.info-section {
+  background:var(--parch); border-radius:var(--radius-md); padding:15px 17px;
+}
+.info-section-title {
+  font-family:"DM Mono",monospace;
+  font-size:10px; font-weight:500; color:var(--faint);
+  text-transform:uppercase; letter-spacing:1.2px; margin-bottom:9px;
+  display:flex; align-items:center; gap:6px;
+}
+.cause-text { font-size:13px; color:var(--ink); line-height:1.65; }
+
+.sym-list { list-style:none; }
+.sym-list li {
+  font-size:13px; padding:5px 0; border-bottom:1px solid rgba(0,0,0,0.06);
+  display:flex; gap:9px; align-items:flex-start; line-height:1.45; color:var(--ink);
+}
+.sym-list li:last-child { border-bottom:none; }
+.sym-dot { width:7px; height:7px; border-radius:50%; background:var(--g4); flex-shrink:0; margin-top:4px; }
+
+.treatment-section { margin-bottom:20px; }
+.treat-step {
+  display:flex; gap:12px; margin-bottom:10px; align-items:flex-start;
+  background:#fff; border-radius:var(--radius-sm); padding:12px 14px;
+  border:1.5px solid var(--parch);
+  transition:border-color 0.15s;
+}
+.treat-step:hover { border-color:var(--g4); }
+.treat-num {
+  width:26px; height:26px; border-radius:50%;
+  background:var(--g0); color:var(--g5);
+  display:flex; align-items:center; justify-content:center;
+  font-family:"DM Mono",monospace;
+  font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px;
+}
+.treat-en { font-size:13px; font-weight:600; color:var(--ink); }
+.treat-hi { font-family:"Noto Sans Devanagari",sans-serif; font-size:12px; color:var(--muted); display:block; margin-top:4px; }
+
+.products-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+@media(max-width:500px){ .products-grid{grid-template-columns:1fr} }
+.prod-card {
+  background:var(--parch); border-radius:var(--radius-sm); padding:12px 14px;
+  border:1.5px solid rgba(0,0,0,0.06);
+  display:flex; align-items:flex-start; gap:11px;
+  transition:all 0.15s;
+}
+.prod-card:hover { border-color:var(--g4); background:#fff; }
+.prod-icon { font-size:24px; flex-shrink:0; }
+.prod-name { font-size:13px; font-weight:700; color:var(--ink); }
+.prod-detail { font-size:11px; color:var(--muted); margin-top:2px; }
+.prod-price {
+  font-family:"DM Mono",monospace;
+  font-size:13px; font-weight:500; color:var(--g3); margin-top:5px;
+  display:inline-block; background:rgba(74,140,42,0.08);
+  padding:2px 8px; border-radius:6px;
+}
+
+.prevention-list { list-style:none; }
+.prevention-list li {
+  font-size:13px; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.06);
+  display:flex; gap:9px; align-items:flex-start; color:var(--ink); line-height:1.45;
+}
+.prevention-list li:last-child { border-bottom:none; }
+.check-icon {
+  width:18px; height:18px; border-radius:50%;
+  background:var(--mild-bg); border:1.5px solid var(--mild-bd);
+  color:var(--mild-tx); font-size:11px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+}
+
+.modal-footer {
+  background:var(--g0);
+  padding:16px 28px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.season-badge {
+  font-family:"DM Mono",monospace;
+  font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.5px;
+  display:flex; align-items:center; gap:6px;
+}
+.share-btn {
+  background:var(--g5); color:var(--g0); border:none;
+  border-radius:var(--radius-sm); padding:9px 20px;
+  font-family:"Baloo 2",cursive; font-size:13px; font-weight:800;
+  cursor:pointer; display:flex; align-items:center; gap:7px;
+  transition:all 0.18s;
+}
+.share-btn:hover { background:var(--g6); transform:scale(1.03); }
+
+/* ─── EMPTY ─── */
+.empty { text-align:center; padding:80px 20px; color:var(--muted); }
+.empty-icon { font-size:56px; margin-bottom:14px; }
+.empty h3 { font-family:"Syne",sans-serif; font-size:20px; font-weight:700; color:var(--ink); margin-bottom:7px; }
+
+/* ─── FOOTER ─── */
+.footer {
+  background:var(--g0);
+  padding:28px 28px;
+  text-align:center;
+  border-top:1px solid rgba(144,208,64,0.15);
+  margin-top:60px;
+}
+.footer-logo {
+  font-family:"Syne",sans-serif;
+  font-size:18px; font-weight:800; color:var(--g5); margin-bottom:6px;
+}
+.footer p { font-size:12px; color:rgba(255,255,255,0.3); line-height:1.7; }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-logo">
+<div class="nav-icon">🌿</div>
+<div class="nav-title">Fasal<span>Rakshak</span></div>
+</div>
+<div class="nav-right">
+<span class="nav-count" id="nav-count">18 diseases</span>
+<div class="lang-toggle">
+<button class="lang-btn on" id="btn-en" onclick="setLang('en')">EN</button>
+<button class="lang-btn" id="btn-hi" onclick="setLang('hi')">हि</button>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<div class="hero">
+<h1>Crop Disease <span>Guide</span></h1>
+<div class="hero-hi" id="hero-hi">फसल रोग पहचान और उपचार गाइड</div>
+<p id="hero-p">Complete reference guide for Indian farmers — identify crop diseases, understand symptoms, and get treatment plans in Hindi &amp; English</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">6</div><div class="stat-label" id="stat1">Crops</div></div>
+<div class="stat"><div class="stat-num">18</div><div class="stat-label" id="stat2">Diseases</div></div>
+<div class="stat"><div class="stat-num">50+</div><div class="stat-label" id="stat3">Treatments</div></div>
+<div class="stat"><div class="stat-num">2</div><div class="stat-label" id="stat4">Languages</div></div>
+</div>
+</div>
+<!-- FILTER BAR -->
+<div class="filter-bar">
+<div class="filter-inner">
+<span class="filter-label" id="fl-crop">Crop</span>
+<div class="crop-filters" id="crop-filters">
+<button class="cf-btn on" id="cf-all" onclick="filterCrop('all',this)">🌱 All Crops</button>
+<button class="cf-btn" onclick="filterCrop('wheat',this)">🌾 Wheat</button>
+<button class="cf-btn" onclick="filterCrop('rice',this)">🍚 Rice</button>
+<button class="cf-btn" onclick="filterCrop('tomato',this)">🍅 Tomato</button>
+<button class="cf-btn" onclick="filterCrop('potato',this)">🥔 Potato</button>
+<button class="cf-btn" onclick="filterCrop('cotton',this)">🌸 Cotton</button>
+<button class="cf-btn" onclick="filterCrop('maize',this)">🌽 Maize</button>
+</div>
+<div class="sev-filters">
+<button class="sf-btn all on" id="sf-all" onclick="filterSev('all',this)">All</button>
+<button class="sf-btn crit" onclick="filterSev('critical',this)">⚠ Critical</button>
+<button class="sf-btn mod" onclick="filterSev('moderate',this)">⚡ Moderate</button>
+<button class="sf-btn mild" onclick="filterSev('mild',this)">🔵 Mild</button>
+</div>
+</div>
+</div>
+<!-- MAIN -->
+<div class="main">
+<div class="section-hd">
+<h2 id="grid-title">All Diseases</h2>
+<span class="results-count" id="results-count">18 shown</span>
+</div>
+<div class="disease-grid" id="disease-grid"></div>
+<div class="empty" id="empty-state" style="display:none">
+<div class="empty-icon">🔍</div>
+<h3>No diseases found</h3>
+<p>Try selecting a different crop or severity level</p>
+</div>
+</div>
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal" onclick="closeModal(event)">
+<div class="modal" id="modal-inner">
+<button class="modal-close" onclick="closeModal(null)">✕</button>
+<div id="modal-content"></div>
+</div>
+</div>
+<!-- FOOTER -->
+<div class="footer">
+<strong>FasalRakshak</strong> — Crop Disease Reference Guide · Built for Indian Farmers 🌾<br/>
+<span style="font-size:11px">All information is for reference only. Consult your local Krishi Vigyan Kendra for expert advice.</span>
+</div>
+<script>
+// ── Language state ────────────────────────────────────────────────────────────
+var L = "en";
+var activeCrop = "all";
+var activeSev = "all";
+
+// ── Disease Database ──────────────────────────────────────────────────────────
+var DB = [
+  // ── WHEAT ──
+  {
+    id: 1, crop: "wheat", cropLabel: "🌾 Wheat", cropLabelHi: "🌾 गेहूं",
+    name: "Wheat Rust (Yellow Stripe)", nameHi: "गेहूं का पीला रतुआ",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Stripe_rust_on_wheat.jpg?width=500",
+
+    emoji: "🟡",
+    cause: "Fungus Puccinia striiformis. Spreads through wind-borne spores. Thrives in cool, moist weather (10–15°C).",
+    causeHi: "फफूंद Puccinia striiformis द्वारा। हवा से फैलने वाले बीजाणु। ठंडे नम मौसम में फैलता है।",
+    season: "October – February",
+    seasonHi: "अक्टूबर – फरवरी",
+    symptoms: [
+      "Yellow to orange stripe-like pustules on leaves",
+      "Powdery yellow spore masses on leaf surface",
+      "Premature drying and death of leaves",
+      "Stunted plant growth and poor grain filling",
+      "Pustules arranged in stripes along leaf veins"
+    ],
+    symptomsHi: [
+      "पत्तियों पर पीले-नारंगी धारीदार फफोले",
+      "पत्ती की सतह पर पाउडरी पीले बीजाणु",
+      "पत्तियों का समय से पहले सूखना",
+      "पौधे की वृद्धि रुकना और दाना न भरना",
+      "पत्ती की शिराओं के साथ धारियों में फफोले"
+    ],
+    treatments: [
+      { en: "Spray Propiconazole 25 EC @ 1ml/litre of water immediately", hi: "तुरंत प्रोपिकोनाज़ोल 25 ईसी @ 1ml/लीटर पानी का छिड़काव करें" },
+      { en: "Apply Mancozeb 75 WP @ 2.5g/litre as protective spray", hi: "सुरक्षात्मक छिड़काव के लिए मैनकोज़ेब 75 WP @ 2.5g/लीटर लगाएं" },
+      { en: "Remove and destroy severely infected plant parts", hi: "गंभीर रूप से संक्रमित पौधों के हिस्सों को हटाएं और नष्ट करें" },
+      { en: "Repeat spray after 15 days if infection persists", hi: "संक्रमण बने रहने पर 15 दिन बाद दोबारा छिड़काव करें" }
+    ],
+    prevention: [
+      "Use rust-resistant wheat varieties (PBW 343, HD 2967)",
+      "Avoid excessive nitrogen fertilizer application",
+      "Ensure proper drainage to reduce humidity",
+      "Monitor fields regularly during cool weather"
+    ],
+    preventionHi: [
+      "जंग-प्रतिरोधी गेहूं की किस्में उपयोग करें",
+      "अत्यधिक नाइट्रोजन उर्वरक से बचें",
+      "नमी कम करने के लिए उचित जल निकासी सुनिश्चित करें",
+      "ठंडे मौसम में खेतों की नियमित निगरानी करें"
+    ],
+    products: [
+      { name: "Tilt 25 EC", detail: "Propiconazole fungicide", price: "₹280/100ml", icon: "🧪" },
+      { name: "Mancozeb 75 WP", detail: "Broad spectrum protection", price: "₹180/250g", icon: "🧴" },
+      { name: "Bumper 25 EC", detail: "Systemic fungicide", price: "₹320/100ml", icon: "🧪" }
+    ]
+  },
+  {
+    id: 2, crop: "wheat", cropLabel: "🌾 Wheat", cropLabelHi: "🌾 गेहूं",
+    name: "Powdery Mildew", nameHi: "चूर्णिल आसिता",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Blumeria_graminis_(Powdery_mildew)_on_wheat.jpg?width=500",
+
+    emoji: "⬜",
+    cause: "Fungus Blumeria graminis. Develops in warm days and cool nights with high humidity.",
+    causeHi: "फफूंद Blumeria graminis। गर्म दिन और ठंडी रात के साथ उच्च आर्द्रता में विकसित होता है।",
+    season: "November – March",
+    seasonHi: "नवंबर – मार्च",
+    symptoms: [
+      "White powdery coating on leaves, stems and spikes",
+      "Yellowing of leaves beneath white patches",
+      "Distorted and curled young shoots",
+      "Reduced photosynthesis leading to poor grain yield"
+    ],
+    symptomsHi: [
+      "पत्तियों, तनों और बालियों पर सफेद पाउडरी परत",
+      "सफेद धब्बों के नीचे पत्तियों का पीलापन",
+      "युवा तनों का विकृत और मुड़ना",
+      "कम प्रकाश संश्लेषण से कम दाना उत्पादन"
+    ],
+    treatments: [
+      { en: "Apply Sulfex 80 WP @ 3g/litre water as foliar spray", hi: "सल्फेक्स 80 WP @ 3g/लीटर पानी का पत्तियों पर छिड़काव करें" },
+      { en: "Spray Karathane 40 EC @ 1ml/litre for severe infection", hi: "गंभीर संक्रमण के लिए करथाने 40 ईसी @ 1ml/लीटर का छिड़काव" },
+      { en: "Improve air circulation by proper crop spacing", hi: "उचित दूरी से हवा का संचार सुधारें" }
+    ],
+    prevention: [
+      "Plant resistant varieties",
+      "Avoid dense sowing",
+      "Reduce overhead irrigation in evenings",
+      "Apply potash fertilizer to strengthen plant"
+    ],
+    preventionHi: [
+      "प्रतिरोधी किस्में लगाएं",
+      "घनी बुवाई से बचें",
+      "शाम को ऊपर से सिंचाई कम करें",
+      "पौधे को मजबूत करने के लिए पोटाश उर्वरक लगाएं"
+    ],
+    products: [
+      { name: "Sulfex 80 WP", detail: "Sulfur based fungicide", price: "₹120/500g", icon: "🧴" },
+      { name: "Karathane 40 EC", detail: "Mildew specific", price: "₹220/100ml", icon: "🧪" }
+    ]
+  },
+  {
+    id: 3, crop: "wheat", cropLabel: "🌾 Wheat", cropLabelHi: "🌾 गेहूं",
+    name: "Loose Smut", nameHi: "अनावृत कंड रोग",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Ustilago_tritici_on_Triticum_aestivum.jpg?width=500",
+
+    emoji: "🖤",
+    cause: "Seed-borne fungus Ustilago tritici. Infection spreads through contaminated seed.",
+    causeHi: "बीज जनित फफूंद Ustilago tritici। दूषित बीज के माध्यम से संक्रमण फैलता है।",
+    season: "March – April",
+    seasonHi: "मार्च – अप्रैल",
+    symptoms: [
+      "Black powdery mass replacing grain in spike",
+      "Infected spikes appear before healthy ones",
+      "Spores scatter at flowering stage",
+      "Complete grain is replaced by black smut"
+    ],
+    symptomsHi: [
+      "बाली में दाने की जगह काला पाउडरी द्रव्यमान",
+      "संक्रमित बालें स्वस्थ बालों से पहले निकलती हैं",
+      "फूल आने पर बीजाणु बिखरते हैं",
+      "पूरा दाना काले स्मट से बदल जाता है"
+    ],
+    treatments: [
+      { en: "Hot water seed treatment at 49°C for 2 hours before sowing", hi: "बुवाई से पहले 49°C पर 2 घंटे गर्म पानी से बीज उपचार" },
+      { en: "Seed treatment with Carboxin 37.5% + Thiram 37.5% @ 3g/kg seed", hi: "बीज उपचार कार्बोक्सिन + थिरम @ 3g/किग्रा बीज से करें" },
+      { en: "Use only certified disease-free seeds for sowing", hi: "केवल प्रमाणित रोगमुक्त बीज का उपयोग करें" }
+    ],
+    prevention: [
+      "Always use certified seeds",
+      "Treat seeds before every sowing",
+      "Remove and burn infected spikes before dispersal",
+      "Avoid saving grain from infected crop as seed"
+    ],
+    preventionHi: [
+      "हमेशा प्रमाणित बीज उपयोग करें",
+      "हर बुवाई से पहले बीज उपचार करें",
+      "बीजाणु फैलने से पहले संक्रमित बालें हटाएं और जलाएं",
+      "संक्रमित फसल का दाना बीज के रूप में न बचाएं"
+    ],
+    products: [
+      { name: "Vitavax Power", detail: "Carboxin + Thiram seed treatment", price: "₹240/100g", icon: "🧪" },
+      { name: "Raxil 2% DS", detail: "Tebuconazole seed dressing", price: "₹320/100g", icon: "🧴" }
+    ]
+  },
+  // ── RICE ──
+  {
+    id: 4, crop: "rice", cropLabel: "🍚 Rice", cropLabelHi: "🍚 धान",
+    name: "Rice Blast", nameHi: "धान का झोंका रोग",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Rice_leaf_blast.jpg?width=500",
+
+    emoji: "💥",
+    cause: "Fungus Magnaporthe oryzae. Spreads through infected seed, plant debris, and airborne spores.",
+    causeHi: "फफूंद Magnaporthe oryzae। संक्रमित बीज, पौधे के मलबे और हवाई बीजाणुओं से फैलता है।",
+    season: "June – November",
+    seasonHi: "जून – नवंबर",
+    symptoms: [
+      "Diamond-shaped lesions with gray center and brown border on leaves",
+      "Neck rot at base of panicle causing white empty grains",
+      "Infected nodes turn black and break easily",
+      "Lesions on collar, node and panicle neck"
+    ],
+    symptomsHi: [
+      "पत्तियों पर ग्रे केंद्र और भूरी सीमा के साथ हीरे आकार के घाव",
+      "पैनिकल के आधार पर गर्दन सड़न जिससे सफेद खाली दाने",
+      "संक्रमित गांठें काली हो जाती हैं और आसानी से टूटती हैं",
+      "कॉलर, गांठ और पैनिकल की गर्दन पर घाव"
+    ],
+    treatments: [
+      { en: "Apply Tricyclazole 75 WP @ 0.6g/litre at booting and ear emergence", hi: "बूटिंग और बाली निकलने पर ट्राइसाइक्लाज़ोल 75 WP @ 0.6g/लीटर लगाएं" },
+      { en: "Spray Isoprothiolane 40 EC @ 1.5ml/litre as preventive", hi: "निवारक के रूप में आइसोप्रोथिओलेन 40 ईसी @ 1.5ml/लीटर का छिड़काव" },
+      { en: "Avoid excess nitrogen — split into 3 applications", hi: "अधिक नाइट्रोजन से बचें — 3 भागों में बांटकर लगाएं" },
+      { en: "Maintain 2-3cm standing water in field", hi: "खेत में 2-3 सेमी पानी बनाए रखें" }
+    ],
+    prevention: [
+      "Use blast resistant varieties (Pusa 44, Swarna Sub1)",
+      "Seed treatment with Pseudomonas fluorescens 10g/kg",
+      "Avoid dense planting",
+      "Ensure balanced nutrient management"
+    ],
+    preventionHi: [
+      "झोंका प्रतिरोधी किस्में उपयोग करें",
+      "10g/किग्रा स्यूडोमोनास फ्लुओरेसेंस से बीज उपचार",
+      "घनी रोपाई से बचें",
+      "संतुलित पोषक तत्व प्रबंधन सुनिश्चित करें"
+    ],
+    products: [
+      { name: "Beam 75 WP", detail: "Tricyclazole systemic fungicide", price: "₹340/100g", icon: "🧪" },
+      { name: "Fuji-One 40 EC", detail: "Isoprothiolane fungicide", price: "₹380/250ml", icon: "🧴" },
+      { name: "Contaf Plus", detail: "Hexaconazole 5 SC", price: "₹280/250ml", icon: "🧪" }
+    ]
+  },
+  {
+    id: 5, crop: "rice", cropLabel: "🍚 Rice", cropLabelHi: "🍚 धान",
+    name: "Brown Plant Hopper", nameHi: "भूरा फुदका कीट",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Nilaparvata_lugens.jpg?width=500",
+
+    emoji: "🐞",
+    cause: "Insect Nilaparvata lugens. Migrates from one field to another. Thrives in dense crop and high nitrogen.",
+    causeHi: "कीट Nilaparvata lugens। एक खेत से दूसरे में प्रवास। घनी फसल और उच्च नाइट्रोजन में पनपता है।",
+    season: "August – October",
+    seasonHi: "अगस्त – अक्टूबर",
+    symptoms: [
+      "Circular scorched patches called hopperburn",
+      "Yellowing starting from base of plant",
+      "Insects clustered at base of stem near soil surface",
+      "Honeydew secretion causing growth of sooty mold"
+    ],
+    symptomsHi: [
+      "होपरबर्न कहे जाने वाले गोल जले हुए धब्बे",
+      "पौधे के आधार से पीलापन शुरू होना",
+      "मिट्टी की सतह के पास तने के आधार पर कीड़े",
+      "मधुरस स्राव से काली फफूंद का विकास"
+    ],
+    treatments: [
+      { en: "Spray Buprofezin 25 SC @ 1.6ml/litre directly at base of plant", hi: "पौधे के आधार पर सीधे ब्यूप्रोफेज़िन 25 SC @ 1.6ml/लीटर का छिड़काव" },
+      { en: "Drain field and keep dry for 3-4 days to reduce population", hi: "आबादी कम करने के लिए खेत खाली करें और 3-4 दिन सूखा रखें" },
+      { en: "Apply Pymetrozine 50 WG @ 0.3g/litre for severe infestation", hi: "गंभीर संक्रमण के लिए पाइमेट्रोज़िन 50 WG @ 0.3g/लीटर लगाएं" }
+    ],
+    prevention: [
+      "Avoid excessive nitrogen use",
+      "Use light traps to monitor adult populations",
+      "Maintain proper spacing between hills",
+      "Conserve natural enemies like spiders"
+    ],
+    preventionHi: [
+      "अत्यधिक नाइट्रोजन उपयोग से बचें",
+      "वयस्क आबादी की निगरानी के लिए लाइट ट्रैप लगाएं",
+      "पौधों के बीच उचित दूरी बनाए रखें",
+      "मकड़ियों जैसे प्राकृतिक शत्रुओं को संरक्षित करें"
+    ],
+    products: [
+      { name: "Applaud 25 SC", detail: "Buprofezin insecticide", price: "₹420/100ml", icon: "🧪" },
+      { name: "Chess 50 WG", detail: "Pymetrozine insecticide", price: "₹580/60g", icon: "🧴" }
+    ]
+  },
+  {
+    id: 6, crop: "rice", cropLabel: "🍚 Rice", cropLabelHi: "🍚 धान",
+    name: "Bacterial Leaf Blight", nameHi: "जीवाणु पत्ती झुलसन",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Rice_bacterial_leaf_blight.jpg?width=500",
+
+    emoji: "🍂",
+    cause: "Bacterium Xanthomonas oryzae. Spreads through infected water, rain splash, and wind.",
+    causeHi: "जीवाणु Xanthomonas oryzae। संक्रमित पानी, वर्षा की बौछार और हवा से फैलता है।",
+    season: "July – September",
+    seasonHi: "जुलाई – सितंबर",
+    symptoms: [
+      "Water-soaked lesions on leaf margins turning yellow to white",
+      "Yellowing spreads from margins inward",
+      "Wilting of young seedlings (kresek symptom)",
+      "Milky bacterial ooze when cut under water"
+    ],
+    symptomsHi: [
+      "पत्ती के किनारों पर पानी से भीगे घाव जो पीले-सफेद हो जाते हैं",
+      "पीलापन किनारों से अंदर की ओर फैलता है",
+      "युवा पौधों का मुरझाना (क्रेसेक लक्षण)",
+      "पानी में काटने पर दूधिया जीवाणु स्राव"
+    ],
+    treatments: [
+      { en: "Spray Copper oxychloride 50 WP @ 3g/litre at first sign", hi: "पहले संकेत पर कॉपर ऑक्सीक्लोराइड 50 WP @ 3g/लीटर का छिड़काव" },
+      { en: "Apply Streptocycline 100 ppm + Copper oxychloride 0.25% mix", hi: "स्ट्रेप्टोसाइक्लिन 100 ppm + कॉपर ऑक्सीक्लोराइड 0.25% मिश्रण लगाएं" },
+      { en: "Remove infected stubble after harvest completely", hi: "कटाई के बाद संक्रमित ठूंठ पूरी तरह हटाएं" }
+    ],
+    prevention: [
+      "Use resistant varieties",
+      "Avoid flood irrigation from infected to healthy fields",
+      "Use clean certified seed",
+      "Avoid injury to leaves during transplanting"
+    ],
+    preventionHi: [
+      "प्रतिरोधी किस्में उपयोग करें",
+      "संक्रमित से स्वस्थ खेतों में बाढ़ सिंचाई से बचें",
+      "साफ प्रमाणित बीज उपयोग करें",
+      "रोपाई के दौरान पत्तियों को चोट से बचाएं"
+    ],
+    products: [
+      { name: "Blitox 50 WP", detail: "Copper oxychloride bactericide", price: "₹140/250g", icon: "🧴" },
+      { name: "Kocide 2000", detail: "Copper hydroxide", price: "₹320/250g", icon: "🧪" }
+    ]
+  },
+  // ── TOMATO ──
+  {
+    id: 7, crop: "tomato", cropLabel: "🍅 Tomato", cropLabelHi: "🍅 टमाटर",
+    name: "Early Blight", nameHi: "अगेती झुलसन",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternaria_solani_on_tomato.jpg?width=500",
+
+    emoji: "🟤",
+    cause: "Fungus Alternaria solani. Survives in infected plant debris and soil for several years.",
+    causeHi: "फफूंद Alternaria solani। कई वर्षों तक संक्रमित पौधे के मलबे और मिट्टी में जीवित रहती है।",
+    season: "October – March",
+    seasonHi: "अक्टूबर – मार्च",
+    symptoms: [
+      "Dark brown spots with concentric rings like a target board",
+      "Yellow halo surrounding brown spots on older leaves",
+      "Lower leaves affected first and progressively moves up",
+      "Sunken dark lesion at stem end of fruit"
+    ],
+    symptomsHi: [
+      "टारगेट बोर्ड जैसे संकेंद्रित वलयों के साथ गहरे भूरे धब्बे",
+      "पुरानी पत्तियों पर भूरे धब्बों के चारों ओर पीला प्रभामंडल",
+      "पहले निचली पत्तियां प्रभावित होती हैं और धीरे-धीरे ऊपर जाता है",
+      "फल के तने के सिरे पर धंसा हुआ काला घाव"
+    ],
+    treatments: [
+      { en: "Spray Mancozeb 75 WP @ 2.5g/litre every 7-10 days", hi: "हर 7-10 दिन में मैनकोज़ेब 75 WP @ 2.5g/लीटर का छिड़काव" },
+      { en: "Apply Chlorothalonil 75 WP @ 2g/litre as protective spray", hi: "सुरक्षात्मक छिड़काव के रूप में क्लोरोथालोनिल 75 WP @ 2g/लीटर लगाएं" },
+      { en: "Remove and destroy lower infected leaves immediately", hi: "तुरंत निचली संक्रमित पत्तियों को हटाएं और नष्ट करें" }
+    ],
+    prevention: [
+      "Avoid overhead irrigation — use drip irrigation",
+      "Remove crop debris after harvest",
+      "Rotate crops — avoid tomato on same plot for 3 years",
+      "Apply balanced potash fertilizer"
+    ],
+    preventionHi: [
+      "ऊपर से सिंचाई से बचें — ड्रिप सिंचाई उपयोग करें",
+      "कटाई के बाद फसल मलबा हटाएं",
+      "फसल चक्र — 3 साल तक एक ही जगह टमाटर न लगाएं",
+      "संतुलित पोटाश उर्वरक लगाएं"
+    ],
+    products: [
+      { name: "Dithane M-45", detail: "Mancozeb 75 WP", price: "₹160/250g", icon: "🧪" },
+      { name: "Kavach 75 WP", detail: "Chlorothalonil fungicide", price: "₹180/250g", icon: "🧴" },
+      { name: "Ridomil Gold", detail: "Metalaxyl + Mancozeb", price: "₹420/250g", icon: "🧪" }
+    ]
+  },
+  {
+    id: 8, crop: "tomato", cropLabel: "🍅 Tomato", cropLabelHi: "🍅 टमाटर",
+    name: "Leaf Curl Virus", nameHi: "पत्ती मरोड़ विषाणु",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Tomato_leaf_curl_New_Delhi_virus.jpg?width=500",
+
+    emoji: "🌀",
+    cause: "Tomato Leaf Curl Virus (ToLCV). Transmitted by whitefly (Bemisia tabaci).",
+    causeHi: "टमाटर पत्ती मरोड़ विषाणु। सफेद मक्खी (Bemisia tabaci) द्वारा फैलता है।",
+    season: "Year-round, peak in dry season",
+    seasonHi: "साल भर, सूखे मौसम में चरम पर",
+    symptoms: [
+      "Leaves curl upward or downward abnormally",
+      "Yellowing and thickening of leaf tissue",
+      "Severe stunting of entire plant growth",
+      "Flower and fruit drop — very poor yield"
+    ],
+    symptomsHi: [
+      "पत्तियां असामान्य रूप से ऊपर या नीचे की ओर मुड़ती हैं",
+      "पत्ती के ऊतक का पीलापन और मोटाई",
+      "पूरे पौधे की वृद्धि में गंभीर बाधा",
+      "फूल और फल का झड़ना — बहुत कम उपज"
+    ],
+    treatments: [
+      { en: "Remove and destroy infected plants immediately", hi: "तुरंत संक्रमित पौधों को हटाएं और नष्ट करें" },
+      { en: "Spray Imidacloprid 17.8 SL @ 0.5ml/litre to control whitefly", hi: "सफेद मक्खी नियंत्रण के लिए इमिडाक्लोप्रिड 17.8 SL @ 0.5ml/लीटर का छिड़काव" },
+      { en: "Install yellow sticky traps @ 20/acre for monitoring", hi: "निगरानी के लिए 20/एकड़ पीले चिपचिपे ट्रैप लगाएं" },
+      { en: "Apply reflective mulch to repel whiteflies", hi: "सफेद मक्खियों को भगाने के लिए परावर्तक मल्च लगाएं" }
+    ],
+    prevention: [
+      "Use virus-free certified seedlings",
+      "Install insect-proof net on nursery",
+      "Avoid planting near old infected crop",
+      "Spray neem oil 3ml/litre regularly"
+    ],
+    preventionHi: [
+      "वायरस-मुक्त प्रमाणित पौध उपयोग करें",
+      "नर्सरी पर कीट-प्रूफ नेट लगाएं",
+      "पुरानी संक्रमित फसल के पास रोपण से बचें",
+      "नियमित रूप से नीम तेल 3ml/लीटर का छिड़काव करें"
+    ],
+    products: [
+      { name: "Confidor 17.8 SL", detail: "Imidacloprid insecticide", price: "₹380/100ml", icon: "🧪" },
+      { name: "Yellow Sticky Traps", detail: "Whitefly monitoring", price: "₹80/10 traps", icon: "🟡" },
+      { name: "Actara 25 WG", detail: "Thiamethoxam insecticide", price: "₹720/100g", icon: "🧴" }
+    ]
+  },
+  {
+    id: 9, crop: "tomato", cropLabel: "🍅 Tomato", cropLabelHi: "🍅 टमाटर",
+    name: "Late Blight", nameHi: "पिछेती झुलसन",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Potato_late_blight.jpg?width=500",
+
+    emoji: "🔵",
+    cause: "Oomycete Phytophthora infestans. Thrives in cool wet conditions — spreads explosively in 3-5 days.",
+    causeHi: "ओओमाइसीट Phytophthora infestans। ठंडी नम स्थितियों में पनपता है — 3-5 दिनों में विस्फोटक रूप से फैलता है।",
+    season: "December – February",
+    seasonHi: "दिसंबर – फरवरी",
+    symptoms: [
+      "Dark water-soaked patches rapidly spreading on leaves",
+      "White cottony mold on underside of leaves in humid weather",
+      "Brown firm rot on fruit surface — entire fruit rots",
+      "Entire plant collapses quickly in wet conditions"
+    ],
+    symptomsHi: [
+      "पत्तियों पर तेजी से फैलने वाले गहरे पानी से भीगे धब्बे",
+      "नम मौसम में पत्ती की निचली सतह पर सफेद रुई जैसी फफूंद",
+      "फल की सतह पर भूरी ठोस सड़न — पूरा फल सड़ जाता है",
+      "नम स्थितियों में पूरा पौधा जल्दी गिर जाता है"
+    ],
+    treatments: [
+      { en: "Emergency spray Cymoxanil 8% + Mancozeb 64% @ 2.5g/litre", hi: "आपातकालीन छिड़काव साइमोक्सानिल 8% + मैनकोज़ेब 64% @ 2.5g/लीटर" },
+      { en: "Switch to drip irrigation — avoid wetting leaves", hi: "ड्रिप सिंचाई पर जाएं — पत्तियां गीली न करें" },
+      { en: "Apply Metalaxyl-M 4% + Mancozeb 64% WP for severe cases", hi: "गंभीर मामलों में मेटालैक्सिल-M 4% + मैनकोज़ेब 64% WP लगाएं" }
+    ],
+    prevention: [
+      "Avoid dense planting",
+      "Ensure good air circulation",
+      "Start protective spraying before disease appears",
+      "Destroy all infected plant material"
+    ],
+    preventionHi: [
+      "घनी रोपाई से बचें",
+      "अच्छा वायु संचरण सुनिश्चित करें",
+      "रोग आने से पहले सुरक्षात्मक छिड़काव शुरू करें",
+      "सभी संक्रमित पौधे नष्ट करें"
+    ],
+    products: [
+      { name: "Curzate M8", detail: "Cymoxanil + Mancozeb", price: "₹560/500g", icon: "🧪" },
+      { name: "Revus 23.4 SC", detail: "Mandipropamid fungicide", price: "₹780/100ml", icon: "🧴" }
+    ]
+  },
+  // ── POTATO ──
+  {
+    id: 10, crop: "potato", cropLabel: "🥔 Potato", cropLabelHi: "🥔 आलू",
+    name: "Potato Late Blight", nameHi: "आलू पिछेती झुलसन",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Phytophthora_infestans_on_potato_leaves.jpg?width=500",
+
+    emoji: "⚫",
+    cause: "Phytophthora infestans. Same pathogen as tomato. Caused the Irish Famine of 1845.",
+    causeHi: "Phytophthora infestans। टमाटर जैसा रोगाणु। 1845 के आयरिश अकाल का कारण बना।",
+    season: "November – February",
+    seasonHi: "नवंबर – फरवरी",
+    symptoms: [
+      "Water-soaked dark lesions spreading rapidly on leaves",
+      "White fungal growth on leaf underside in humid conditions",
+      "Brown soft rotting of tubers with foul smell",
+      "Entire field can be destroyed within a week"
+    ],
+    symptomsHi: [
+      "पत्तियों पर तेजी से फैलने वाले पानी से भीगे गहरे घाव",
+      "नम परिस्थितियों में पत्ती की निचली सतह पर सफेद फफूंद",
+      "तेज दुर्गंध के साथ कंदों की भूरी नर्म सड़न",
+      "एक सप्ताह के भीतर पूरा खेत नष्ट हो सकता है"
+    ],
+    treatments: [
+      { en: "Apply Ridomil Gold MZ 68 WG @ 2g/litre at first sign", hi: "पहले संकेत पर रिडोमिल गोल्ड MZ 68 WG @ 2g/लीटर लगाएं" },
+      { en: "Emergency spray Cymoxanil 8% + Mancozeb 64% immediately", hi: "तुरंत साइमोक्सानिल 8% + मैनकोज़ेब 64% का आपातकालीन छिड़काव" },
+      { en: "Destroy affected haulms before harvest", hi: "कटाई से पहले प्रभावित तनों को नष्ट करें" },
+      { en: "Never store infected tubers with healthy ones", hi: "कभी भी संक्रमित कंदों को स्वस्थ कंदों के साथ न रखें" }
+    ],
+    prevention: [
+      "Use certified disease-free seed tubers",
+      "Start preventive spraying at 7-day intervals",
+      "Plant resistant varieties (Kufri Jyoti, Kufri Badshah)",
+      "Ensure good drainage"
+    ],
+    preventionHi: [
+      "प्रमाणित रोगमुक्त बीज कंद उपयोग करें",
+      "7-दिन के अंतराल पर निवारक छिड़काव शुरू करें",
+      "प्रतिरोधी किस्में लगाएं",
+      "अच्छी जल निकासी सुनिश्चित करें"
+    ],
+    products: [
+      { name: "Ridomil Gold MZ", detail: "Metalaxyl + Mancozeb", price: "₹480/500g", icon: "🧴" },
+      { name: "Curzate M8", detail: "Cymoxanil + Mancozeb", price: "₹560/500g", icon: "🧪" }
+    ]
+  },
+  {
+    id: 11, crop: "potato", cropLabel: "🥔 Potato", cropLabelHi: "🥔 आलू",
+    name: "Potato Early Blight", nameHi: "आलू अगेती झुलसन",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Potato_early_blight_(Alternaria_solani).jpg?width=500",
+
+    emoji: "🟤",
+    cause: "Fungus Alternaria solani. Common in older plants stressed by drought or nutrient deficiency.",
+    causeHi: "फफूंद Alternaria solani। सूखे या पोषक तत्व की कमी से तनावग्रस्त पुराने पौधों में सामान्य।",
+    season: "October – January",
+    seasonHi: "अक्टूबर – जनवरी",
+    symptoms: [
+      "Brown spots with concentric rings like a target board",
+      "Yellow area surrounding the brown spots",
+      "Lower and older leaves affected first",
+      "Defoliation in severe cases"
+    ],
+    symptomsHi: [
+      "टारगेट बोर्ड जैसे संकेंद्रित वलयों के साथ भूरे धब्बे",
+      "भूरे धब्बों के आसपास पीला क्षेत्र",
+      "पहले निचली और पुरानी पत्तियां प्रभावित",
+      "गंभीर मामलों में पत्तियां झड़ना"
+    ],
+    treatments: [
+      { en: "Spray Chlorothalonil 75 WP @ 2g/litre every 7-10 days", hi: "हर 7-10 दिन में क्लोरोथालोनिल 75 WP @ 2g/लीटर का छिड़काव" },
+      { en: "Apply Mancozeb 75 WP @ 2.5g/litre as protective spray", hi: "सुरक्षात्मक छिड़काव के रूप में मैनकोज़ेब 75 WP @ 2.5g/लीटर लगाएं" },
+      { en: "Ensure proper plant spacing for air circulation", hi: "हवा के संचरण के लिए उचित पौधे की दूरी सुनिश्चित करें" }
+    ],
+    prevention: [
+      "Remove and destroy infected leaves",
+      "Avoid overhead irrigation",
+      "Maintain balanced nutrition especially potassium",
+      "Practice 3-year crop rotation"
+    ],
+    preventionHi: [
+      "संक्रमित पत्तियां हटाएं और नष्ट करें",
+      "ऊपर से सिंचाई से बचें",
+      "विशेष रूप से पोटेशियम के साथ संतुलित पोषण बनाए रखें",
+      "3 साल की फसल चक्र प्रणाली अपनाएं"
+    ],
+    products: [
+      { name: "Kavach 75 WP", detail: "Chlorothalonil fungicide", price: "₹180/250g", icon: "🧪" },
+      { name: "Indofil M-45", detail: "Mancozeb 75 WP", price: "₹155/250g", icon: "🧴" }
+    ]
+  },
+  {
+    id: 12, crop: "potato", cropLabel: "🥔 Potato", cropLabelHi: "🥔 आलू",
+    name: "Black Scurf", nameHi: "काला पपड़ी रोग",
+    severity: "mild",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Rhizoctonia_solani_on_potato.jpg?width=500",
+
+    emoji: "🔲",
+    cause: "Fungus Rhizoctonia solani. Soil-borne, survives for years. Worsens in cool wet soils.",
+    causeHi: "फफूंद Rhizoctonia solani। मिट्टी जनित, वर्षों तक जीवित रहती है। ठंडी नम मिट्टी में बिगड़ती है।",
+    season: "November – March",
+    seasonHi: "नवंबर – मार्च",
+    symptoms: [
+      "Hard black sclerotia visible on tuber surface",
+      "Brown canker lesion at soil level on stem",
+      "Stunted distorted sprouts from seed tuber",
+      "Aerial tubers forming on stems above ground"
+    ],
+    symptomsHi: [
+      "कंद की सतह पर कठोर काले स्क्लेरोशिया",
+      "मिट्टी स्तर पर तने पर भूरा कैंकर घाव",
+      "बीज कंद से बौने विकृत अंकुर",
+      "तनों पर जमीन के ऊपर हवाई कंद"
+    ],
+    treatments: [
+      { en: "Treat seed tubers with Pencycuron 25 WP @ 3g/litre before planting", hi: "रोपण से पहले बीज कंदों को पेन्सीकुरॉन 25 WP @ 3g/लीटर से उपचारित करें" },
+      { en: "Soil drench with Carbendazim 50 WP @ 1g/litre around plants", hi: "पौधों के आसपास मिट्टी में कार्बेंडाज़िम 50 WP @ 1g/लीटर से ड्रेंच करें" },
+      { en: "Use certified disease-free seed tubers", hi: "प्रमाणित रोगमुक्त बीज कंद उपयोग करें" }
+    ],
+    prevention: [
+      "3-year crop rotation without potato",
+      "Plant in well-drained soils",
+      "Avoid excessive irrigation",
+      "Improve soil health with organic compost"
+    ],
+    preventionHi: [
+      "आलू के बिना 3 साल की फसल चक्र",
+      "अच्छी जल निकासी वाली मिट्टी में लगाएं",
+      "अत्यधिक सिंचाई से बचें",
+      "जैविक खाद से मिट्टी की सेहत सुधारें"
+    ],
+    products: [
+      { name: "Monceren 25 WP", detail: "Pencycuron fungicide", price: "₹620/100g", icon: "🧪" },
+      { name: "Emisan 6", detail: "Carbendazim fungicide", price: "₹120/100g", icon: "🧴" }
+    ]
+  },
+  // ── COTTON ──
+  {
+    id: 13, crop: "cotton", cropLabel: "🌸 Cotton", cropLabelHi: "🌸 कपास",
+    name: "Cotton Leaf Curl Virus", nameHi: "कपास पत्ती मरोड़ रोग",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Cotton_leaf_curl_disease.jpg?width=500",
+
+    emoji: "🌀",
+    cause: "Cotton Leaf Curl Virus (CLCuV). Transmitted by whitefly Bemisia tabaci.",
+    causeHi: "कपास पत्ती मरोड़ विषाणु। सफेद मक्खी Bemisia tabaci द्वारा फैलता है।",
+    season: "July – November",
+    seasonHi: "जुलाई – नवंबर",
+    symptoms: [
+      "Leaves curling upward forming cup shape",
+      "Veins darkening and becoming thick",
+      "Enations (leaf-like outgrowths) on leaf undersurface",
+      "Stunted boll formation and drastically reduced yield"
+    ],
+    symptomsHi: [
+      "पत्तियां प्याले के आकार में ऊपर की ओर मुड़ती हैं",
+      "शिराएं काली और मोटी हो जाती हैं",
+      "पत्ती की निचली सतह पर एनेशन (पत्ती जैसी बाहरी वृद्धि)",
+      "टिंडे का विकास रुकना और उपज में भारी कमी"
+    ],
+    treatments: [
+      { en: "Spray Thiamethoxam 25 WG @ 0.4g/litre to control whitefly vector", hi: "सफेद मक्खी नियंत्रण के लिए थियामेथॉक्साम 25 WG @ 0.4g/लीटर का छिड़काव" },
+      { en: "Uproot and burn severely infected plants from field", hi: "खेत से गंभीर रूप से संक्रमित पौधों को उखाड़ें और जलाएं" },
+      { en: "Apply Imidacloprid as soil drench in nursery", hi: "नर्सरी में मिट्टी में इमिडाक्लोप्रिड का ड्रेंच करें" }
+    ],
+    prevention: [
+      "Sow before June 15 to escape peak whitefly season",
+      "Use CLCuV resistant varieties (MNH-786, FH-142)",
+      "Install yellow sticky traps 8-10/acre",
+      "Avoid late sowing"
+    ],
+    preventionHi: [
+      "सफेद मक्खी के मौसम से बचने के लिए 15 जून से पहले बोएं",
+      "CLCuV प्रतिरोधी किस्में उपयोग करें",
+      "8-10/एकड़ पीले चिपचिपे ट्रैप लगाएं",
+      "देर से बुवाई से बचें"
+    ],
+    products: [
+      { name: "Actara 25 WG", detail: "Thiamethoxam insecticide", price: "₹720/100g", icon: "🧪" },
+      { name: "Confidor 17.8 SL", detail: "Imidacloprid insecticide", price: "₹380/100ml", icon: "🧴" }
+    ]
+  },
+  {
+    id: 14, crop: "cotton", cropLabel: "🌸 Cotton", cropLabelHi: "🌸 कपास",
+    name: "Cotton Bollworm", nameHi: "कपास गुलाबी बॉलवर्म",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Helicoverpa_armigera.jpg?width=500",
+
+    emoji: "🐛",
+    cause: "Larvae of Pectinophora gossypiella (Pink bollworm). Bores into squares, flowers and bolls.",
+    causeHi: "पेक्टिनोफोरा गॉसिपिएला (गुलाबी बॉलवर्म) के लार्वा। कलियों, फूलों और टिंडों में छेद करते हैं।",
+    season: "August – November",
+    seasonHi: "अगस्त – नवंबर",
+    symptoms: [
+      "Round entry holes on developing cotton bolls",
+      "Rosy discoloration of cotton lint inside boll",
+      "Boll failing to open properly — reduced seed cotton",
+      "Pink caterpillar visible inside boll when split"
+    ],
+    symptomsHi: [
+      "विकसित हो रहे कपास के टिंडों पर गोल प्रवेश छेद",
+      "टिंडे के अंदर कपास के रेशे का गुलाबी रंग",
+      "टिंडे का ठीक से न खुलना — कम बीज कपास",
+      "टिंडा फाड़ने पर गुलाबी कैटरपिलर दिखाई देता है"
+    ],
+    treatments: [
+      { en: "Spray Chlorantraniliprole 18.5 SC @ 0.3ml/litre at first sign", hi: "पहले संकेत पर क्लोरेंट्रानिलिप्रोल 18.5 SC @ 0.3ml/लीटर का छिड़काव" },
+      { en: "Install pheromone traps @ 5/acre for early detection", hi: "जल्दी पहचान के लिए 5/एकड़ फेरोमोन ट्रैप लगाएं" },
+      { en: "Pick and destroy fallen bolls every day", hi: "गिरे हुए टिंडों को हर दिन उठाएं और नष्ट करें" }
+    ],
+    prevention: [
+      "Early sowing before June 15",
+      "Use Bt cotton varieties",
+      "Install pheromone traps for monitoring",
+      "Avoid late harvest of cotton"
+    ],
+    preventionHi: [
+      "15 जून से पहले जल्दी बुवाई",
+      "Bt कपास किस्में उपयोग करें",
+      "निगरानी के लिए फेरोमोन ट्रैप लगाएं",
+      "कपास की देर से कटाई से बचें"
+    ],
+    products: [
+      { name: "Coragen 18.5 SC", detail: "Chlorantraniliprole insecticide", price: "₹980/60ml", icon: "🧪" },
+      { name: "Pink Bollworm Trap", detail: "Pheromone monitoring trap", price: "₹95/trap", icon: "🪤" }
+    ]
+  },
+  {
+    id: 15, crop: "cotton", cropLabel: "🌸 Cotton", cropLabelHi: "🌸 कपास",
+    name: "Fusarium Wilt", nameHi: "फ्यूजेरियम उकठा रोग",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Fusarium_wilt_cotton.jpg?width=500",
+
+    emoji: "💀",
+    cause: "Soil-borne fungus Fusarium oxysporum. Persists in soil for 15+ years. No chemical cure once infected.",
+    causeHi: "मिट्टी जनित फफूंद Fusarium oxysporum। 15+ वर्षों तक मिट्टी में रहती है। संक्रमित होने पर कोई रासायनिक उपचार नहीं।",
+    season: "June – September",
+    seasonHi: "जून – सितंबर",
+    symptoms: [
+      "Sudden wilting of entire plant during hot afternoon",
+      "Brown vascular discoloration inside stem when cut",
+      "Yellowing starts from lower leaves and moves upward",
+      "Plant dies within 2-3 weeks of first symptom"
+    ],
+    symptomsHi: [
+      "गर्म दोपहर में पूरे पौधे का अचानक मुरझाना",
+      "काटने पर तने के अंदर भूरा संवहनी मलिनकिरण",
+      "पीलापन निचली पत्तियों से शुरू होकर ऊपर जाता है",
+      "पहले लक्षण के 2-3 सप्ताह में पौधा मर जाता है"
+    ],
+    treatments: [
+      { en: "Remove infected plants with roots immediately to prevent spread", hi: "फैलाव रोकने के लिए तुरंत जड़ सहित संक्रमित पौधे हटाएं" },
+      { en: "Soil drench Carbendazim 50 WP @ 2g/litre around healthy plants", hi: "स्वस्थ पौधों के आसपास कार्बेंडाज़िम 50 WP @ 2g/लीटर से मिट्टी ड्रेंच करें" },
+      { en: "Apply Trichoderma viride biocontrol to soil before planting", hi: "रोपण से पहले मिट्टी में ट्राइकोडर्मा विराइड जैव नियंत्रण लगाएं" }
+    ],
+    prevention: [
+      "Do NOT grow cotton in wilt-infected soil for 5+ years",
+      "Use wilt-resistant varieties (MCU5, CPD2)",
+      "Apply Trichoderma viride to soil before planting",
+      "Maintain good soil drainage"
+    ],
+    preventionHi: [
+      "उकठा संक्रमित मिट्टी में 5+ वर्षों तक कपास न उगाएं",
+      "उकठा-प्रतिरोधी किस्में उपयोग करें",
+      "रोपण से पहले मिट्टी में ट्राइकोडर्मा विराइड लगाएं",
+      "अच्छी मिट्टी जल निकासी बनाए रखें"
+    ],
+    products: [
+      { name: "Bavistin 50 WP", detail: "Carbendazim fungicide", price: "₹220/100g", icon: "🧪" },
+      { name: "Trichoderma viride", detail: "Biocontrol agent", price: "₹180/250g", icon: "🌱" }
+    ]
+  },
+  // ── MAIZE ──
+  {
+    id: 16, crop: "maize", cropLabel: "🌽 Maize", cropLabelHi: "🌽 मक्का",
+    name: "Fall Armyworm", nameHi: "फॉल आर्मीवर्म",
+    severity: "critical",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Spodoptera_frugiperda_on_maize.jpg?width=500",
+
+    emoji: "🐛",
+    cause: "Invasive caterpillar Spodoptera frugiperda. Entered India in 2018. Spreads very rapidly.",
+    causeHi: "आक्रामक कैटरपिलर Spodoptera frugiperda। 2018 में भारत में आया। बहुत तेजी से फैलता है।",
+    season: "June – October",
+    seasonHi: "जून – अक्टूबर",
+    symptoms: [
+      "Ragged irregular holes from leaf feeding damage",
+      "Frass (excrement) deposited in plant whorl",
+      "Caterpillar with distinctive inverted Y mark on head",
+      "Severe damage to central whorl of young plants"
+    ],
+    symptomsHi: [
+      "पत्ती खाने से अनियमित उखड़े हुए छेद",
+      "पौधे के थोरल में जमा मल (फ्रास)",
+      "सिर पर विशिष्ट उल्टे Y निशान वाला कैटरपिलर",
+      "युवा पौधों के केंद्रीय थोरल को गंभीर नुकसान"
+    ],
+    treatments: [
+      { en: "Apply Spinetoram 11.7 SC @ 0.5ml/litre directly into whorl", hi: "थोरल में सीधे स्पिनेटोरम 11.7 SC @ 0.5ml/लीटर लगाएं" },
+      { en: "Mix sand + ash + lime and pour into whorl for cheap control", hi: "सस्ते नियंत्रण के लिए रेत + राख + चूना मिलाकर थोरल में डालें" },
+      { en: "Spray Chlorantraniliprole 18.5 SC @ 0.3ml/litre on foliage", hi: "पत्तियों पर क्लोरेंट्रानिलिप्रोल 18.5 SC @ 0.3ml/लीटर का छिड़काव" },
+      { en: "Install pheromone traps @ 5/acre for population monitoring", hi: "जनसंख्या निगरानी के लिए 5/एकड़ फेरोमोन ट्रैप लगाएं" }
+    ],
+    prevention: [
+      "Monitor fields from germination onwards",
+      "Encourage natural enemies (parasitic wasps)",
+      "Intercrop maize with beans or cowpea",
+      "Practice early sowing"
+    ],
+    preventionHi: [
+      "अंकुरण से खेतों की निगरानी करें",
+      "प्राकृतिक दुश्मनों को प्रोत्साहित करें",
+      "मक्के के साथ बीन्स या लोबिया अंतर-फसल करें",
+      "जल्दी बुवाई का अभ्यास करें"
+    ],
+    products: [
+      { name: "Delegate 11.7 SC", detail: "Spinetoram insecticide", price: "₹1200/100ml", icon: "🧪" },
+      { name: "Coragen 18.5 SC", detail: "Chlorantraniliprole", price: "₹980/60ml", icon: "🧴" },
+      { name: "FAW Pheromone Trap", detail: "Fall armyworm monitoring", price: "₹120/trap", icon: "🪤" }
+    ]
+  },
+  {
+    id: 17, crop: "maize", cropLabel: "🌽 Maize", cropLabelHi: "🌽 मक्का",
+    name: "Maize Streak Virus", nameHi: "मक्का रेखा विषाणु",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Maize_streak_virus.jpg?width=500",
+
+    emoji: "🟡",
+    cause: "Maize Streak Virus (MSV). Transmitted by leafhoppers. Major problem in Africa and India.",
+    causeHi: "मक्का रेखा विषाणु (MSV)। लीफहॉपर द्वारा फैलता है। अफ्रीका और भारत में प्रमुख समस्या।",
+    season: "June – September",
+    seasonHi: "जून – सितंबर",
+    symptoms: [
+      "Narrow yellow or white streaks running parallel to leaf veins",
+      "Young plants most severely affected",
+      "Stunted growth and poor underdeveloped cob",
+      "Streaks may cover entire leaf area in severe cases"
+    ],
+    symptomsHi: [
+      "पत्ती की शिराओं के समानांतर संकरी पीली या सफेद धारियां",
+      "युवा पौधे सबसे अधिक प्रभावित",
+      "बौना विकास और खराब अविकसित भुट्टा",
+      "गंभीर मामलों में धारियां पूरे पत्ती क्षेत्र को ढक सकती हैं"
+    ],
+    treatments: [
+      { en: "Seed treatment with Imidacloprid 70 WS @ 5ml/kg to control leafhopper", hi: "लीफहॉपर नियंत्रण के लिए इमिडाक्लोप्रिड 70 WS @ 5ml/किग्रा से बीज उपचार" },
+      { en: "Remove infected plants early to reduce inoculum", hi: "इनोकुलम कम करने के लिए जल्दी संक्रमित पौधे हटाएं" },
+      { en: "Spray Thiamethoxam 25 WG for leafhopper control", hi: "लीफहॉपर नियंत्रण के लिए थियामेथॉक्साम 25 WG का छिड़काव" }
+    ],
+    prevention: [
+      "Use streak-tolerant varieties",
+      "Treat seeds before sowing",
+      "Avoid late planting",
+      "Monitor for leafhopper populations"
+    ],
+    preventionHi: [
+      "रेखा-सहिष्णु किस्में उपयोग करें",
+      "बुवाई से पहले बीज उपचार करें",
+      "देर से रोपण से बचें",
+      "लीफहॉपर जनसंख्या की निगरानी करें"
+    ],
+    products: [
+      { name: "Gaucho 70 WS", detail: "Imidacloprid seed treatment", price: "₹480/100g", icon: "🧪" },
+      { name: "Actara 25 WG", detail: "Thiamethoxam insecticide", price: "₹720/100g", icon: "🧴" }
+    ]
+  },
+  {
+    id: 18, crop: "maize", cropLabel: "🌽 Maize", cropLabelHi: "🌽 मक्का",
+    name: "Grey Leaf Spot", nameHi: "ग्रे पत्ती धब्बा रोग",
+    severity: "moderate",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Cercospora_zeae-maydis.jpg?width=500",
+
+    emoji: "⬜",
+    cause: "Fungus Cercospora zeae-maydis. Survives in crop residue. Spreads in warm humid weather.",
+    causeHi: "फफूंद Cercospora zeae-maydis। फसल अवशेषों में जीवित रहती है। गर्म नम मौसम में फैलती है।",
+    season: "July – October",
+    seasonHi: "जुलाई – अक्टूबर",
+    symptoms: [
+      "Rectangular gray or tan lesions bounded by leaf veins",
+      "Brown borders clearly visible around gray center",
+      "Multiple lesions merging causing entire leaf browning",
+      "Lower leaves affected first then moves upward"
+    ],
+    symptomsHi: [
+      "पत्ती की शिराओं द्वारा सीमित आयताकार ग्रे या तन घाव",
+      "ग्रे केंद्र के चारों ओर स्पष्ट रूप से दिखाई देने वाली भूरी सीमाएं",
+      "कई घाव मिलकर पूरी पत्ती को भूरा कर देते हैं",
+      "पहले निचली पत्तियां प्रभावित होती हैं फिर ऊपर जाती हैं"
+    ],
+    treatments: [
+      { en: "Spray Azoxystrobin 18.2% + Difenoconazole 11.4% @ 1ml/litre", hi: "एज़ोक्सिस्ट्रोबिन 18.2% + डिफेनोकोनाज़ोल 11.4% @ 1ml/लीटर का छिड़काव" },
+      { en: "Apply Trifloxystrobin + Tebuconazole @ 0.5ml/litre as alternative", hi: "विकल्प के रूप में ट्राइफ्लोक्सिस्ट्रोबिन + टेब्यूकोनाज़ोल @ 0.5ml/लीटर लगाएं" },
+      { en: "Improve field drainage to reduce humidity", hi: "आर्द्रता कम करने के लिए खेत जल निकासी सुधारें" }
+    ],
+    prevention: [
+      "Destroy all crop residue after harvest",
+      "Plant resistant hybrid varieties",
+      "Ensure proper plant spacing",
+      "Rotate crops with non-hosts"
+    ],
+    preventionHi: [
+      "कटाई के बाद सभी फसल अवशेष नष्ट करें",
+      "प्रतिरोधी संकर किस्में लगाएं",
+      "उचित पौधे की दूरी सुनिश्चित करें",
+      "गैर-मेजबान के साथ फसल चक्र करें"
+    ],
+    products: [
+      { name: "Amistar Top", detail: "Azoxystrobin + Difenoconazole", price: "₹850/100ml", icon: "🧪" },
+      { name: "Score 25 EC", detail: "Difenoconazole fungicide", price: "₹380/100ml", icon: "🧴" }
+    ]
+  }
+];
+
+// ── Filter state ──────────────────────────────────────────────────────────────
+var activeCrop = "all";
+var activeSev  = "all";
+
+// ── Render grid ───────────────────────────────────────────────────────────────
+
+// Disease symptom SVG illustrations
+function getDiseaseIllustration(d) {
+  var c = d.crop, id = d.id;
+  var bgMap = {wheat:'#e8f0d0',rice:'#d8f0d8',tomato:'#d0e8d0',potato:'#d8e8c8',cotton:'#dce8d8',maize:'#e4f0c8'};
+  var leafMap = {wheat:'#5a8a20',rice:'#4a9a30',tomato:'#3a8a28',potato:'#4a7a28',cotton:'#5a8a38',maize:'#6a9a28'};
+  var leaf2Map = {wheat:'#4a7a18',rice:'#3a8a20',tomato:'#2a7a18',potato:'#3a6a18',cotton:'#4a7a28',maize:'#5a8a18'};
+  var bg = bgMap[c]||'#e8f0d0', lf = leafMap[c]||'#5a8a20', lf2 = leaf2Map[c]||'#4a7a18';
+  
+  var w=320, h=200;
+  var parts = [];
+  parts.push('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">');
+  parts.push('<rect width="'+w+'" height="'+h+'" fill="'+bg+'"/>');
+  
+  // Plant shapes
+  if(c==='wheat'||c==='maize'){
+    parts.push('<ellipse cx="70" cy="'+h+'" rx="7" ry="95" fill="'+lf+'" transform="rotate(-12,70,'+h+')"/>');
+    parts.push('<ellipse cx="130" cy="'+h+'" rx="8" ry="115" fill="'+lf2+'" transform="rotate(-3,130,'+h+')"/>');
+    parts.push('<ellipse cx="190" cy="'+h+'" rx="8" ry="100" fill="'+lf+'" transform="rotate(7,190,'+h+')"/>');
+    parts.push('<ellipse cx="250" cy="'+h+'" rx="7" ry="85" fill="'+lf2+'" transform="rotate(14,250,'+h+')"/>');
+  } else if(c==='rice'){
+    parts.push('<ellipse cx="60" cy="'+h+'" rx="5" ry="105" fill="'+lf+'" transform="rotate(-14,60,'+h+')"/>');
+    parts.push('<ellipse cx="120" cy="'+h+'" rx="6" ry="125" fill="'+lf2+'" transform="rotate(-4,120,'+h+')"/>');
+    parts.push('<ellipse cx="180" cy="'+h+'" rx="6" ry="110" fill="'+lf+'" transform="rotate(6,180,'+h+')"/>');
+    parts.push('<ellipse cx="240" cy="'+h+'" rx="5" ry="90" fill="'+lf2+'" transform="rotate(17,240,'+h+')"/>');
+  } else if(c==='tomato'||c==='potato'){
+    parts.push('<line x1="160" y1="200" x2="95" y2="120" stroke="#3a5a18" stroke-width="4"/>');
+    parts.push('<line x1="160" y1="200" x2="185" y2="95" stroke="#3a5a18" stroke-width="4"/>');
+    parts.push('<line x1="160" y1="200" x2="145" y2="155" stroke="#3a5a18" stroke-width="3"/>');
+    parts.push('<ellipse cx="95" cy="110" rx="48" ry="28" fill="'+lf+'" transform="rotate(-22,95,110)"/>');
+    parts.push('<ellipse cx="185" cy="88" rx="52" ry="30" fill="'+lf2+'" transform="rotate(12,185,88)"/>');
+    parts.push('<ellipse cx="145" cy="148" rx="55" ry="26" fill="'+lf+'" transform="rotate(-5,145,148)"/>');
+    parts.push('<ellipse cx="250" cy="125" rx="42" ry="24" fill="'+lf2+'" transform="rotate(28,250,125)"/>');
+  } else if(c==='cotton'){
+    parts.push('<path d="M160,200 Q70,155 55,85 Q85,65 110,90 Q130,58 158,78 Q178,48 200,72 Q225,52 248,88 Q232,158 160,200Z" fill="'+lf+'"/>');
+    parts.push('<line x1="160" y1="200" x2="160" y2="75" stroke="#2a4a10" stroke-width="3" opacity="0.5"/>');
+  }
+  
+  // Disease symptoms
+  var syms = {
+    1:  function(){ // Wheat Rust - yellow stripes
+      for(var i=0;i<7;i++){var x=30+i*42;parts.push('<rect x="'+(x-3)+'" y="10" width="7" height="'+(h-20)+'" fill="#e8a020" opacity="0.72" rx="3"/>');parts.push('<rect x="'+(x+6)+'" y="25" width="4" height="'+(h-45)+'" fill="#c88010" opacity="0.5" rx="2"/>');}},
+    2:  function(){ // Powdery Mildew - white patches
+      [[60,55],[150,40],[240,60],[100,120],[200,130],[50,150],[280,90],[170,160]].forEach(function(p){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="30" ry="18" fill="#f0f0f0" opacity="0.72"/>');parts.push('<ellipse cx="'+(p[0]+4)+'" cy="'+(p[1]-2)+'" rx="18" ry="11" fill="#ffffff" opacity="0.5"/>');});},
+    3:  function(){ // Loose Smut - black mass on spikes
+      parts.push('<ellipse cx="130" cy="45" rx="28" ry="52" fill="#111111" opacity="0.88"/>');
+      parts.push('<ellipse cx="195" cy="35" rx="24" ry="48" fill="#222222" opacity="0.80"/>');
+      parts.push('<ellipse cx="250" cy="50" rx="19" ry="40" fill="#111111" opacity="0.83"/>');},
+    4:  function(){ // Rice Blast - diamond lesions
+      [[70,40],[160,30],[250,45],[110,100],[210,90],[60,155],[170,160],[290,120]].forEach(function(p,i){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="13" ry="8" fill="#b0a080" opacity="0.82" transform="rotate(-30,'+p[0]+','+p[1]+')"/>');parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="7" ry="4" fill="#7a6840" opacity="0.9" transform="rotate(-30,'+p[0]+','+p[1]+')"/>');});},
+    5:  function(){ // Brown Plant Hopper - hopperburn circles
+      [[70,105],[160,95],[250,110],[115,155]].forEach(function(p){parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="36" fill="#c8a840" opacity="0.52"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="22" fill="#a87820" opacity="0.62"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="10" fill="#705010" opacity="0.72"/>');});},
+    6:  function(){ // Bacterial Blight - yellow margin
+      parts.push('<rect x="0" y="0" width="55" height="'+h+'" fill="#e8e040" opacity="0.38"/>');
+      parts.push('<rect x="265" y="0" width="55" height="'+h+'" fill="#e8e040" opacity="0.38"/>');
+      parts.push('<rect x="45" y="0" width="28" height="'+h+'" fill="#c8c020" opacity="0.22"/>');
+      parts.push('<rect x="248" y="0" width="28" height="'+h+'" fill="#c8c020" opacity="0.22"/>');},
+    7:  function(){ // Early Blight - concentric rings
+      [[75,55],[185,45],[120,140],[240,135],[50,155]].forEach(function(p){parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="20" fill="#603010" opacity="0.82"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="13" fill="'+lf+'" opacity="0.55"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="#3a1808" opacity="0.9"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="26" fill="none" stroke="#e8c840" stroke-width="3" opacity="0.55"/>');});},
+    8:  function(){ // Leaf Curl - wavy distorted
+      ['M30,70 Q90,35 160,72 Q230,110 295,72','M25,105 Q95,68 165,108 Q235,148 300,108','M20,140 Q90,105 165,142 Q240,178 310,142'].forEach(function(p){parts.push('<path d="'+p+'" fill="none" stroke="#2a6828" stroke-width="14" opacity="0.55"/>');parts.push('<path d="'+p+'" fill="none" stroke="#1a5818" stroke-width="7" opacity="0.4"/>');});},
+    9:  function(){ // Late Blight - dark patches
+      [[60,50],[190,40],[120,115],[260,100],[80,158],[210,165]].forEach(function(p){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="38" ry="26" fill="#1a0a04" opacity="0.82"/>');parts.push('<ellipse cx="'+(p[0]+7)+'" cy="'+(p[1]+5)+'" rx="22" ry="15" fill="#2a1208" opacity="0.7"/>');});},
+    10: function(){ // Potato Late Blight same
+      [[60,50],[190,40],[120,115],[260,100],[80,158],[210,165]].forEach(function(p){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="38" ry="26" fill="#1a0a04" opacity="0.82"/>');parts.push('<ellipse cx="'+(p[0]+7)+'" cy="'+(p[1]+5)+'" rx="22" ry="15" fill="#2a1208" opacity="0.7"/>');});},
+    11: function(){ // Potato Early Blight
+      [[75,55],[185,45],[120,140],[240,135],[50,155]].forEach(function(p){parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="20" fill="#603010" opacity="0.82"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="13" fill="'+lf+'" opacity="0.55"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="#3a1808" opacity="0.9"/>');parts.push('<circle cx="'+p[0]+'" cy="'+p[1]+'" r="26" fill="none" stroke="#e8c840" stroke-width="3" opacity="0.55"/>');});},
+    12: function(){ // Black Scurf - tuber with sclerotia
+      parts.push('<ellipse cx="160" cy="130" rx="105" ry="58" fill="#c8b078" opacity="0.85"/>');
+      parts.push('<ellipse cx="160" cy="130" rx="100" ry="53" fill="none" stroke="#a08040" stroke-width="2" opacity="0.6"/>');
+      [[90,105],[130,118],[170,108],[210,122],[100,148],[150,155],[200,148],[240,130],[120,135],[185,138]].forEach(function(p){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="9" ry="6" fill="#111111" opacity="0.88"/>');});},
+    13: function(){ // Cotton Leaf Curl - curled
+      ['M30,65 Q95,30 165,67 Q235,108 295,68','M28,100 Q98,65 168,104 Q238,143 302,103','M22,138 Q92,103 167,140 Q242,177 308,137'].forEach(function(p){parts.push('<path d="'+p+'" fill="none" stroke="#2a6828" stroke-width="16" opacity="0.52"/>');parts.push('<path d="'+p+'" fill="none" stroke="#1a5818" stroke-width="8" opacity="0.38"/>');});},
+    14: function(){ // Bollworm - holes + frass
+      [[65,55],[155,45],[245,60],[100,125],[220,115],[60,175],[180,170]].forEach(function(p,i){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="20" ry="14" fill="'+bg+'" stroke="#8a4018" stroke-width="2.5" opacity="0.9" transform="rotate('+(i*22)+','+p[0]+','+p[1]+')"/>');});
+      for(var i=0;i<18;i++){var fx=18+i*17, fy=40+(i%6)*25;parts.push('<circle cx="'+fx+'" cy="'+fy+'" r="3.5" fill="#6a3010" opacity="0.72"/>');}},
+    15: function(){ // Fusarium Wilt - yellowing + streaks
+      parts.push('<rect x="0" y="0" width="'+w+'" height="'+h+'" fill="#e8c840" opacity="0.22"/>');
+      parts.push('<line x1="160" y1="200" x2="160" y2="0" stroke="#8a5020" stroke-width="4" opacity="0.42"/>');
+      parts.push('<line x1="158" y1="200" x2="95" y2="0" stroke="#8a5020" stroke-width="2.5" opacity="0.32"/>');
+      parts.push('<line x1="162" y1="200" x2="228" y2="0" stroke="#8a5020" stroke-width="2.5" opacity="0.32"/>');},
+    16: function(){ // Fall Armyworm - ragged holes + frass
+      [[55,45],[148,38],[235,52],[90,110],[210,102],[55,165],[175,162],[280,130]].forEach(function(p,i){parts.push('<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="22" ry="15" fill="'+bg+'" stroke="#c89840" stroke-width="2" opacity="0.88" transform="rotate('+(i*28)+','+p[0]+','+p[1]+')"/>');});
+      for(var i=0;i<20;i++){var fx=12+i*15, fy=35+(i%7)*22;parts.push('<circle cx="'+fx+'" cy="'+fy+'" r="3" fill="#7a5010" opacity="0.7"/>');}},
+    17: function(){ // Maize Streak - yellow stripes
+      for(var i=0;i<7;i++){var x=28+i*42;parts.push('<rect x="'+(x-3)+'" y="10" width="7" height="'+(h-20)+'" fill="#f0e050" opacity="0.75" rx="3"/>');parts.push('<rect x="'+(x+6)+'" y="25" width="4" height="'+(h-45)+'" fill="#d0c030" opacity="0.52" rx="2"/>');}},
+    18: function(){ // Grey Leaf Spot - rectangular lesions
+      [[22,18],[100,22],[178,18],[256,24],[22,88],[100,92],[178,88],[256,94],[22,158],[100,162],[178,158],[256,163]].forEach(function(p){parts.push('<rect x="'+p[0]+'" y="'+p[1]+'" width="58" height="24" fill="#a09878" opacity="0.78" rx="2"/>');parts.push('<rect x="'+(p[0]+3)+'" y="'+(p[1]+3)+'" width="52" height="18" fill="#808058" opacity="0.65" rx="1"/>');parts.push('<rect x="'+p[0]+'" y="'+p[1]+'" width="58" height="3" fill="#5a3a18" opacity="0.65"/>');parts.push('<rect x="'+p[0]+'" y="'+(p[1]+21)+'" width="58" height="3" fill="#5a3a18" opacity="0.65"/>');});}
+  };
+  
+  if(syms[id]) syms[id]();
+  
+  // Bottom label bar
+  parts.push('<rect x="0" y="'+(h-34)+'" width="'+w+'" height="34" fill="rgba(0,0,0,0.58)"/>');
+  parts.push('<text x="'+(w/2)+'" y="'+(h-12)+'" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold" letter-spacing="0.3">'+((d.name||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'))+'</text>');
+  parts.push('</svg>');
+  
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(parts.join(''));
+}
+
+function renderGrid() {
+  var filtered = DB.filter(function(d) {
+    var cropOk = activeCrop === "all" || d.crop === activeCrop;
+    var sevOk  = activeSev  === "all" || d.severity === activeSev;
+    return cropOk && sevOk;
+  });
+
+  var grid = document.getElementById("disease-grid");
+  var empty = document.getElementById("empty-state");
+  var count = document.getElementById("results-count");
+
+  count.textContent = filtered.length + (L === "hi" ? " दिखाई दे रहे हैं" : " shown");
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  grid.innerHTML = filtered.map(function(d) {
+    var nm = L === "hi" ? d.nameHi : d.name;
+    var cl = L === "hi" ? d.cropLabelHi : d.cropLabel;
+    var sevClass = "sev-" + d.severity;
+    var sevText = L === "hi"
+      ? {critical:"गंभीर", moderate:"मध्यम", mild:"हल्का"}[d.severity]
+      : {critical:"Critical", moderate:"Moderate", mild:"Mild"}[d.severity];
+    var symsText = (L === "hi" && d.symptomsHi ? d.symptomsHi : d.symptoms).slice(0,2).join(" · ");
+
+    return "<div class=\"d-card\" onclick=\"openModal(" + d.id + ")\">" +
+      "<div class=\"d-card-img-wrap\">" +
+        "<span class=\"d-card-crop-chip\">" + cl + "</span>" +
+        "<span class=\"d-card-sev-chip " + d.severity + "\">" + sevText + "</span>" +
+        "<img class=\"d-card-img\" src=\"" + d.img + "\" data-id=\"" + d.id + "\" alt=\"" + d.name + "\" loading=\"lazy\" onload=\"this.classList.add('loaded')\" onerror=\"this.onerror=null;var _d=DB.filter(function(x){return x.id===parseInt(this.dataset.id)}.bind(this))[0];if(_d){this.src=getDiseaseIllustration(_d);}this.classList.add('loaded')\">" + d.emoji + "<span>" + d.name + "</span></div>'}\">" +
+      "</div>" +
+      "<div class=\"d-card-body\">" +
+        "<div class=\"d-card-name\">" + nm + "</div>" +
+        "<div class=\"d-card-name-hi\">" + (L === "hi" ? d.name : d.nameHi) + "</div>" +
+        "<div class=\"d-card-syms\">" + symsText + "</div>" +
+        "<div class=\"d-card-footer\">" +
+          "<span class=\"d-card-meta\">" + d.products.length + (L === "hi" ? " उत्पाद" : " products") + "</span>" +
+          "<button class=\"view-btn\">" + (L === "hi" ? "देखें →" : "View →") + "</button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+  }).join("");
+}
+
+// ── Open modal ────────────────────────────────────────────────────────────────
+function openModal(id) {
+  var d = DB.filter(function(x) { return x.id === id; })[0];
+  if (!d) return;
+
+  var isHi = L === "hi";
+  var nm = isHi ? d.nameHi : d.name;
+  var nmAlt = isHi ? d.name : d.nameHi;
+  var cl = isHi ? d.cropLabelHi : d.cropLabel;
+  var sevClass = "sev-" + d.severity;
+  var sevText = isHi
+    ? {critical:"गंभीर", moderate:"मध्यम", mild:"हल्का"}[d.severity]
+    : {critical:"Critical", moderate:"Moderate", mild:"Mild"}[d.severity];
+  var symptoms = isHi ? d.symptomsHi : d.symptoms;
+  var prevention = isHi ? d.preventionHi : d.prevention;
+  var cause = isHi ? d.causeHi : d.cause;
+  var season = isHi ? d.seasonHi : d.season;
+
+  var h = "";
+  var _svgSrc = getDiseaseIllustration(d);
+  h += "<img class=\"modal-img\" src=\"" + d.img + "\" alt=\"" + d.name + "\" loading=\"lazy\" onload=\"this.classList.add('loaded')\" onerror=\"this.onerror=null;this.src='" + _svgSrc.replace(/'/g,"\\'") + "';this.classList.add('loaded')\">";
+  h += "<div class=\"modal-body\">";
+  h += "<div class=\"modal-header\">";
+  h += "<div><div class=\"modal-title\">" + nm + "</div><div class=\"modal-title-hi\">" + nmAlt + "</div></div>";
+  h += "<div class=\"modal-badges\"><span class=\"sev-pill " + sevClass + "\" style=\"font-size:13px;padding:4px 12px\">" + sevText + "</span><span class=\"crop-tag modal-crop-tag\">" + cl + "</span></div>";
+  h += "</div>";
+
+  h += "<div class=\"overview-grid\">";
+  h += "<div class=\"info-section\"><div class=\"info-section-title\">🦠 " + (isHi ? "कारण" : "Cause") + "</div><div class=\"cause-text\">" + cause + "</div></div>";
+  h += "<div class=\"info-section\"><div class=\"info-section-title\">📅 " + (isHi ? "मौसम" : "Season") + "</div><div class=\"cause-text\">" + season + "</div></div>";
+  h += "</div>";
+
+  h += "<div class=\"info-section\" style=\"margin-bottom:16px\"><div class=\"info-section-title\">🔍 " + (isHi ? "लक्षण" : "Symptoms") + "</div>";
+  h += "<ul class=\"sym-list\">";
+  for (var i = 0; i < symptoms.length; i++) {
+    h += "<li><div class=\"sym-dot\"></div>" + symptoms[i] + "</li>";
+  }
+  h += "</ul></div>";
+
+  h += "<div class=\"treatment-section\">";
+  h += "<div class=\"info-section-title\" style=\"margin-bottom:12px\">💊 " + (isHi ? "उपचार योजना" : "Treatment Plan") + "</div>";
+  for (var i = 0; i < d.treatments.length; i++) {
+    var t = d.treatments[i];
+    h += "<div class=\"treat-step\"><div class=\"treat-num\">" + (i+1) + "</div>";
+    h += "<div><div class=\"treat-en\">" + (isHi ? t.hi : t.en) + "</div>";
+    h += "<div class=\"treat-hi\">" + (isHi ? t.en : t.hi) + "</div></div></div>";
+  }
+  h += "</div>";
+
+  h += "<div class=\"info-section-title\" style=\"margin-bottom:12px\">🛒 " + (isHi ? "अनुशंसित उत्पाद" : "Recommended Products") + "</div>";
+  h += "<div class=\"products-grid\">";
+  for (var i = 0; i < d.products.length; i++) {
+    var p = d.products[i];
+    h += "<div class=\"prod-card\"><span class=\"prod-icon\">" + p.icon + "</span>";
+    h += "<div><div class=\"prod-name\">" + p.name + "</div>";
+    h += "<div class=\"prod-detail\">" + p.detail + "</div>";
+    h += "<div class=\"prod-price\">" + p.price + "</div></div></div>";
+  }
+  h += "</div>";
+
+  h += "<div class=\"info-section\"><div class=\"info-section-title\">🛡 " + (isHi ? "रोकथाम" : "Prevention") + "</div>";
+  h += "<ul class=\"prevention-list\">";
+  for (var i = 0; i < prevention.length; i++) {
+    h += "<li><div class=\"check-icon\">✓</div>" + prevention[i] + "</li>";
+  }
+  h += "</ul></div>";
+  h += "</div>";
+
+  h += "<div class=\"modal-footer\">";
+  h += "<div class=\"season-badge\">📅 " + (isHi ? "मौसम: " : "Season: ") + season + "</div>";
+  h += "<button class=\"share-btn\" onclick=\"shareDisease('" + d.id + "')\">📤 " + (isHi ? "साझा करें" : "Share") + "</button>";
+  h += "</div>";
+
+  document.getElementById("modal-content").innerHTML = h;
+  document.getElementById("modal").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById("modal")) return;
+  document.getElementById("modal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function shareDisease(id) {
+  var d = DB.filter(function(x) { return x.id === parseInt(id); })[0];
+  if (!d) return;
+  var text = "FasalRakshak: " + d.name + " on " + d.cropLabel + " — " + d.symptoms[0];
+  if (navigator.share) {
+    navigator.share({ title: "FasalRakshak", text: text, url: window.location.href });
+  } else {
+    navigator.clipboard && navigator.clipboard.writeText(text);
+    alert("Disease info copied to clipboard!");
+  }
+}
+
+// ── Filters ───────────────────────────────────────────────────────────────────
+function filterCrop(c, el) {
+  activeCrop = c;
+  document.querySelectorAll(".cf-btn").forEach(function(b) { b.classList.remove("on"); });
+  el.classList.add("on");
+  var t = c === "all"
+    ? (L === "hi" ? "सभी रोग" : "All Diseases")
+    : (L === "hi"
+        ? {wheat:"गेहूं रोग",rice:"धान रोग",tomato:"टमाटर रोग",potato:"आलू रोग",cotton:"कपास रोग",maize:"मक्का रोग"}[c]
+        : {wheat:"Wheat Diseases",rice:"Rice Diseases",tomato:"Tomato Diseases",potato:"Potato Diseases",cotton:"Cotton Diseases",maize:"Maize Diseases"}[c]);
+  document.getElementById("grid-title").textContent = t;
+  renderGrid();
+}
+
+function filterSev(s, el) {
+  activeSev = s;
+  document.querySelectorAll(".sf-btn").forEach(function(b) { b.classList.remove("on"); });
+  el.classList.add("on");
+  renderGrid();
+}
+
+// ── Language ──────────────────────────────────────────────────────────────────
+function setLang(l) {
+  L = l;
+  document.getElementById("btn-en").className = "lang-btn" + (l === "en" ? " on" : "");
+  document.getElementById("btn-hi").className = "lang-btn" + (l === "hi" ? " on" : "");
+  document.getElementById("hero-hi").style.display = l === "hi" ? "none" : "block";
+  document.getElementById("hero-p").textContent = l === "hi"
+    ? "भारतीय किसानों के लिए संपूर्ण संदर्भ गाइड — फसल रोगों की पहचान करें, लक्षण समझें और हिंदी व अंग्रेजी में उपचार योजना पाएं"
+    : "Complete reference guide for Indian farmers — identify crop diseases, understand symptoms, and get treatment plans in Hindi & English";
+  document.getElementById("stat1").textContent = l === "hi" ? "फसलें" : "Crops";
+  document.getElementById("stat2").textContent = l === "hi" ? "रोग" : "Diseases";
+  document.getElementById("stat3").textContent = l === "hi" ? "उपचार" : "Treatments";
+  document.getElementById("stat4").textContent = l === "hi" ? "भाषाएं" : "Languages";
+  document.getElementById("fl-crop").textContent = l === "hi" ? "फसल" : "Crop";
+  document.getElementById("cf-all").textContent = l === "hi" ? "🌱 सभी फसलें" : "🌱 All Crops";
+  renderGrid();
+}
+
+// ── Keyboard close ────────────────────────────────────────────────────────────
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeModal(null);
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+renderGrid();
+</script>
+</body>
+</html>
